@@ -10,5 +10,6 @@ class FiltersUC implements UseCase<FiltersEntities, NoParams> {
 
   FiltersUC({this.repository});
   @override
-  Future<Either<Failure, FiltersEntities>> call(NoParams none) async => await repository.getFilters();
+  Future<Either<Failure, FiltersEntities>> call(NoParams none) async =>
+      await repository.getFilters();
 }
