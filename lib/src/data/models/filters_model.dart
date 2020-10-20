@@ -26,4 +26,15 @@ class FiltersModel extends FiltersEntities {
         countries: json['countries'],
         colors: json['colors']);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'start_year': start_year,
+      'end_year': end_year,
+      "gender": gender,
+      'countries': countries,
+      'colors': colors
+    };
+  }
 }
