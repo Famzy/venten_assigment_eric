@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 class FiltersUC implements UseCase<FiltersEntities, NoParams> {
   final Repository repository;
 
-  FiltersUC({this.repository});
+  FiltersUC(this.repository);
   @override
   Future<Either<Failure, FiltersEntities>> call(NoParams none) async =>
       await repository.getFilters();

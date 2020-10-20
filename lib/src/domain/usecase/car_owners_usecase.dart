@@ -5,10 +5,10 @@ import 'package:assigment/src/domain/entities/car_owners_entities.dart';
 import 'package:assigment/src/domain/repository/repository.dart';
 import 'package:dartz/dartz.dart';
 
-class CarDetailsUC implements UseCase<CarOwnersEntity, Params> {
+class CarOwnersUC implements UseCase<CarOwnersEntity, Params> {
   final Repository repository;
 
-  CarDetailsUC({this.repository});
+  CarOwnersUC(this.repository);
   @override
   Future<Either<Failure, CarOwnersEntity>> call(Params params) async =>
       await repository.getOwnersDetails(params);
