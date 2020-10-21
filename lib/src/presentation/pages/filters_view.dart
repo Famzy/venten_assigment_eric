@@ -1,7 +1,10 @@
+import 'package:assigment/core/routes/router.dart';
+import 'package:assigment/core/routes/router.gr.dart';
 import 'package:assigment/src/data/models/filters_model.dart';
 import 'package:assigment/src/presentation/pages/base_view.dart';
 import 'package:assigment/src/presentation/scoped_model/filtered_view_model.dart';
 import 'package:assigment/src/presentation/widgets/center_message.dart';
+import 'package:assigment/src/presentation/widgets/list_items.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -48,62 +51,12 @@ class _FiltersViewState extends State<FiltersView> {
   }
 
   Widget _getListItemUi(FiltersModel result, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Card(
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text("Date Range:"),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(result.start_year.toString()),
-                Text(" - "),
-                Text(result.end_year.toString()),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Text("Gender:"),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(result.gender == null ? "All" : result.gender),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(flex: 1, child: Text("Countries:")),
-                Expanded(
-                  flex: 4,
-                  child: Row(
-                      children: result.countries
-                          .map((item) => Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2),
-                              child: new Text(item)))
-                          .toList()),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(flex: 1, child: Text("Colors:")),
-                Expanded(
-                  flex: 4,
-                  child: Row(
-                      children: result.colors
-                          .map((item) => Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 1),
-                              child: new Text(item)))
-                          .toList()),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+    return ListItems(
+        onTap: () => Routes.navigator.pushNamed(Routes.ownersDetails),
+        start_year: result.start_year.toString(),
+        end_year: result.end_year.toString(),
+        gender: result.gender,
+        colors: result.colors,
+        countries: result.countries);
   }
 }

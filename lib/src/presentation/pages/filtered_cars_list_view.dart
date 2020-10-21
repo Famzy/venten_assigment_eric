@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 class FilteredCarsView extends StatelessWidget {
   final int id;
@@ -10,16 +12,18 @@ class FilteredCarsView extends StatelessWidget {
 
   const FilteredCarsView(
       {Key key,
-      this.id,
-      this.start_year,
-      this.end_year,
-      this.gender,
-      this.countries,
-      this.colors})
+      @required this.id,
+      @required this.start_year,
+      @required this.end_year,
+      @required this.gender,
+      @required this.countries,
+      @required this.colors})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+    );
   }
 }

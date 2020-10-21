@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/routes/router.dart';
+import 'core/routes/router.gr.dart';
 import 'service_locator.dart' as di;
 
 void main() async {
@@ -20,9 +21,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      navigatorKey: Router.navigatorKey,
-      initialRoute: Router.filters,
-      onGenerateRoute: Router().generateRoute,
+      navigatorKey: Routes.navigatorKey,
+      initialRoute: Routes.filters,
+      onGenerateRoute: Routes.onGenerateRoute,
     );
   }
 }
