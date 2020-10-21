@@ -10,6 +10,6 @@ class CarOwnersUC implements UseCase<CarOwnersEntity, Params> {
 
   CarOwnersUC(this.repository);
   @override
-  Future<Either<Failure, CarOwnersEntity>> call(Params params) async =>
+  Future<Either<Failure, List<CarOwnersEntity>>> call(Params params) async =>
       await repository.getOwnersDetails(params);
 }

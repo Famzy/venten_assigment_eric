@@ -18,13 +18,22 @@ class FiltersModel extends FiltersEntities {
             colors: colors);
 
   factory FiltersModel.formJson(Map<String, dynamic> json) {
+    var colorsFromJson = json['colors'];
+    var countriesFromJson = json['countries'];
+//    List<String> colorsList = colorsFromJson.cast<dynamic>();
+    List<String> colorsList = new List<String>.from(colorsFromJson);
+    List<String> countriesList = new List<String>.from(countriesFromJson);
+
+    //List<String> countriesList = countriesFromJson.cast<dynamic>();
+
     return FiltersModel(
-        id: json['id'],
-        start_year: json[' start_year'],
-        end_year: json[' end_year'],
-        gender: json['gender'],
-        countries: json['countries'],
-        colors: json['colors']);
+      id: json['id'],
+      start_year: json['start_year'],
+      end_year: json['end_year'],
+      gender: (json['gender']),
+      countries: countriesList,
+      colors: colorsList,
+    );
   }
 
   Map<String, dynamic> toJson() {

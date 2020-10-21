@@ -4,6 +4,7 @@ import 'package:assigment/core/network/network_info.dart';
 import 'package:assigment/core/usecase/params.dart';
 import 'package:assigment/src/data/datasource/local/local_data_source.dart';
 import 'package:assigment/src/data/datasource/remote/remote_data_source.dart';
+import 'package:assigment/src/data/models/filters_model.dart';
 import 'package:assigment/src/domain/entities/car_owners_entities.dart';
 import 'package:assigment/src/domain/entities/filters_entities.dart';
 import 'package:assigment/src/domain/repository/repository.dart';
@@ -18,13 +19,14 @@ class RepositoryImpl implements Repository {
       {this.remoteDataSource, this.networkInfo, this.localDataSource});
 
   @override
-  Future<Either<Failure, FiltersEntities>> getFilters() async {
+  Future<Either<Failure, List<FiltersEntities>>> getFilters() async {
     if (await networkInfo.isConnected) {
       try {
         final remoteFilters = await remoteDataSource.getJsonFilters();
-        localDataSource.cachedJsonFilters(remoteFilters);
+        //  localDataSource.cachedJsonFilters(remoteFilters);
         return Right(remoteFilters);
-      } on ServerException {
+      } catch (e) {
+        print(e);
         return Left(ServerFailure());
       }
     } else {
@@ -38,7 +40,8 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, CarOwnersEntity>> getOwnersDetails(Params filter) {
+  Future<Either<Failure, List<CarOwnersEntity>>> getOwnersDetails(
+      Params filter) {
     // TODO: implement getOwnersDetails
     throw UnimplementedError();
   }

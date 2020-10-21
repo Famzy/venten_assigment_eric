@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
 
 abstract class LocalDataSource {
-  Future<FiltersModel> getJsonFilters();
+  Future<List<FiltersModel>> getJsonFilters();
   Future<CarOwnersModels> getCarOwnerDetails(Params params);
   Future<void> cachedJsonFilters(FiltersModel filtersToCache);
 }
@@ -20,11 +20,11 @@ class LocalDataSourceImpl implements LocalDataSource {
   LocalDataSourceImpl({@required this.sharedPreferences});
 
   @override
-  Future<FiltersModel> getJsonFilters() {
+  Future<List<FiltersModel>> getJsonFilters() {
     final jsonString =
         sharedPreferences.getString(AppStrings.CACHED_JSON_FILTER);
     if (jsonString != null) {
-      return Future.value(FiltersModel.formJson(json.decode(jsonString)));
+      //  return Future.value(FiltersModel.formJson(json.decode(jsonString)));
     } else {
       throw CacheException(AppStrings.CACHE_FAILURE_MESSAGE);
     }

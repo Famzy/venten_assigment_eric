@@ -5,8 +5,8 @@ class FiltersEntities extends Equatable {
   final int start_year;
   final int end_year;
   final String gender;
-  final List countries;
-  final List colors;
+  final List<String> countries;
+  final List<String> colors;
 
   FiltersEntities(
       {this.id,

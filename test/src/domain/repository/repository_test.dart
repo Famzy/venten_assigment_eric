@@ -1,3 +1,4 @@
+import 'package:assigment/core/usecase/params.dart';
 import 'package:assigment/src/domain/entities/car_owners_entities.dart';
 import 'package:assigment/src/domain/entities/filters_entities.dart';
 import 'package:assigment/src/domain/repository/repository.dart';
@@ -50,11 +51,21 @@ void main() {
       bio: "sells Food");
 
   test("Get the Filtered Cars Details", () async {
-    when(mockRepository.getOwnersDetails(any))
+    when(mockRepository.getOwnersDetails(Params(
+            id: 1,
+            end_year: 2,
+            start_year: 2,
+            colors: ['red'],
+            countries: ['gers'])))
         .thenAnswer((realInvocation) async => Right(tDetails));
-    final result = carOwnersUC.call(any);
+    final result = await carOwnersUC.call(any);
     expect(result, Right(tFilter));
-    verify(mockRepository.getFilters());
+    verify(mockRepository.getOwnersDetails(Params(
+        id: 1,
+        end_year: 2,
+        start_year: 2,
+        colors: ['red'],
+        countries: ['gers'])));
     verifyNoMoreInteractions(mockRepository);
   });
 }
